@@ -2,9 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    [Header("Health System")]
+    [SerializeField] float maxHealth = 1200;
+    [SerializeField] float healthDcayRate = -3;
+    [SerializeField] Slider slider;
+
     [Header("Movement")]
     [SerializeField] float speed = 5f;
     [SerializeField] float rotationSpeed = 10;
@@ -27,8 +33,11 @@ public class Player : MonoBehaviour
     public UnityEvent OnLanding;
 
     
+    private float currentHealth;
     private float horizontalInput;
     private float currentSpeed, airSpeed;
+    private Image fill;
+    private Color fillcolor;
     private Rigidbody2D myRb;
     private Quaternion trunAngle;
     private bool jump, secondJump, doublJump, canDash, dash, grounded, wasGrounded, movementLock, lookLeft;
@@ -37,6 +46,10 @@ public class Player : MonoBehaviour
         myRb = GetComponent<Rigidbody2D>();
         canDash = true;
         currentSpeed = speed;
+        currentHealth = maxHealth;
+        slider.value = slider.maxValue;
+        fill = slider.fillRect.gameObject.GetComponent<Image>();
+        fillcolor = fill.color;
 
         if (OnLanding == null)
             OnLanding = new UnityEvent();
@@ -44,6 +57,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        HealthSystem();
         if (!movementLock) {
             horizontalInput = Input.GetAxis("Horizontal");
 
@@ -119,6 +133,20 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void HealthSystem() {
+        if(currentHealth > 0) {
+            currentHealth += Time.deltaTime * healthDcayRate;
+            currentHealth = Mathf.Clamp(currentHealth, -3, maxHealth);
+            float barValue = Mathf.InverseLerp(0, maxHealth, currentHealth);
+            slider.value = barValue;
+            fillcolor.r = 1 - barValue;
+            fillcolor.g = barValue;
+            fill.color = fillcolor;
+        }
+        else
+            GameOver();
+    }
+
     //The function that handels all the player movement
     private void Movement() {
         Vector2 targetVelocity;
@@ -156,11 +184,16 @@ public class Player : MonoBehaviour
         myRb.velocity = Vector2.Lerp(myRb.velocity, targetVelocity, lerpSpeed * Time.deltaTime);
     }
 
+    //Function that makes the player dash in given direction
     private void Dash(Vector3 dashDirection)
     {
         myRb.AddForce(dashDirection * dashForce, ForceMode2D.Impulse);
         canDash = false;
         StartCoroutine(DashCooldown());
+    }
+
+    private void GameOver() {
+        Debug.Log("<color=red>GAME-OVER</color>");
     }
 
     //Function for activating double jump
