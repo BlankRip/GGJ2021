@@ -811,7 +811,7 @@ MonoBehaviour:
   lerpSpeed: 10
   jumpeForce: 5
   secondJumpeForce: 5
-  dashDist: 5
+  dashForce: 15
   dJumpActivateGap: 1
   groundCheckRadius: 0.2
   groundLayers:

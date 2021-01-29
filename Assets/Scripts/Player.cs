@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public float secondJumpeForce = 5f;
     public float dashForce = 5f;
     [SerializeField] float dJumpActivateGap = 1f;
+    [SerializeField] float dashGap = 1f;
     [Range(0, 0.5f)] [SerializeField] float groundCheckRadius = 0.2f;
     [SerializeField] LayerMask groundLayers;
     [SerializeField] Transform feetPoint;
@@ -26,11 +27,12 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D myRb;
     private Quaternion trunAngle;
-    private bool jump, secondJump, doublJump, grounded, wasGrounded, movementLock, lookLeft;
+    private bool jump, secondJump, doublJump, grounded, wasGrounded, movementLock, lookLeft, canDash;
 
     private void Start()
     {
         myRb = GetComponent<Rigidbody2D>();
+        canDash = true;
         currentSpeed = speed;
 
         if (OnLanding == null)
@@ -91,7 +93,7 @@ public class Player : MonoBehaviour
         #endregion
 
         #region Dash
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
             if (lookLeft)
                 Dash(-transform.right, dashForce);
@@ -174,7 +176,15 @@ public class Player : MonoBehaviour
 
     private void Dash(Vector3 dashDirection, float dashforce)
     {
-        myRb.AddForce(dashDirection * dashforce, ForceMode2D.Impulse);        
+        myRb.AddForce(dashDirection * dashforce, ForceMode2D.Impulse);
+        canDash = false;
+        StartCoroutine(DashCooldown());
+    }
+
+    private IEnumerator DashCooldown()
+    {
+        yield return new WaitForSeconds(dashGap);
+        canDash = true;
     }
 
     private void OnDrawGizmos()
