@@ -139,7 +139,10 @@ public class Player : MonoBehaviour
 
     private void HealthSystem() {
         if(currentHealth > 0) {
-            currentHealth += Time.deltaTime * healthDcayRate;
+            if(movementLock)
+                currentHealth += Time.deltaTime * healthDcayRate * 0.4f;
+            else
+                currentHealth += Time.deltaTime * healthDcayRate;
             currentHealth = Mathf.Clamp(currentHealth, -3, maxHealth);
             float barValue = Mathf.InverseLerp(0, maxHealth, currentHealth);
             slider.value = barValue;
