@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,5 +23,11 @@ public class GameManager : MonoBehaviour
 
         //Cursor.visible = false;
         //Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void GameOver() {
+        Debug.Log("<color=red>GAME-OVER</color>");
+        fadeOut.retry = true;
+        fadeOut.gameObject.SetActive(true);
     }
 }

@@ -5,7 +5,6 @@ using UnityEngine;
 public class TriggerDialogue : MonoBehaviour
 {
     [SerializeField] GameObject sequence;
-    [SerializeField] bool triggerWhenLocked;
     TypeWriteText myDialogues;
     bool conversationInProgress;
     bool canTrigger;
@@ -16,10 +15,6 @@ public class TriggerDialogue : MonoBehaviour
         myDialogues = GetComponent<TypeWriteText>();
         conversationInProgress = false;
         canTrigger = true;
-        if (triggerWhenLocked)
-        {
-            canTrigger = false;
-        }
     }
 
 

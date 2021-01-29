@@ -55,6 +55,8 @@ public class Player : MonoBehaviour
 
         if (OnLanding == null)
             OnLanding = new UnityEvent();
+
+        //movementLock = true;
     }
 
     private void Update()
@@ -151,7 +153,7 @@ public class Player : MonoBehaviour
             fill.color = fillcolor;
         }
         else
-            GameOver();
+            GameManager.instance.GameOver();
     }
 
     //The function that handels all the player movement
@@ -199,10 +201,6 @@ public class Player : MonoBehaviour
         StartCoroutine(DashCooldown());
     }
 
-    private void GameOver() {
-        Debug.Log("<color=red>GAME-OVER</color>");
-    }
-
     //Function for activating double jump
     private IEnumerator ActivateDoubleJump() {
         yield return new WaitForSeconds(dJumpActivateGap);
@@ -217,6 +215,7 @@ public class Player : MonoBehaviour
 
     public void LockMovement()
     {
+        myRb.velocity = Vector3.zero;
         movementLock = true;
     }
 
