@@ -8,20 +8,22 @@ public class Player : MonoBehaviour
 {
     [Header("Health System")]
     [SerializeField] float maxHealth = 1200;
-    [SerializeField] float healthDcayRate = -3;
+    public float healthDcayRate = -3;
     [SerializeField] Slider slider;
 
     [Header("Movement")]
-    [SerializeField] float speed = 5f;
+    public float speed = 5f;
     [SerializeField] float rotationSpeed = 10;
     [SerializeField] float lerpSpeed = 10;
 
     [Header("Jump")]
+    public bool jumpenni;
     public float jumpeForce = 5f;
     public float secondJumpeForce = 5f;
     [SerializeField] float dJumpActivateGap = 1f;
 
     [Header("Dash")]
+    public bool dasher;
     [SerializeField] float dashGap = 1f;
     public float dashForce = 5f;
 
@@ -75,13 +77,13 @@ public class Player : MonoBehaviour
             if (grounded && (Input.GetKeyDown(KeyCode.Space))) {
                 jump = true;
 
-                if (true) {
+                if (jumpenni) {
                     StopCoroutine(ActivateDoubleJump());
                     StartCoroutine(ActivateDoubleJump());
                 }
             }
 
-            if (true) {
+            if (jumpenni) {
                 if (!grounded && doublJump && (Input.GetKeyDown(KeyCode.Space))) {
                     secondJump = true;
                     doublJump = false;
@@ -101,8 +103,10 @@ public class Player : MonoBehaviour
         #endregion
 
         #region Dash
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        if(dasher) {
+            if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
             dash = true;
+        }
         #endregion
     }
 
