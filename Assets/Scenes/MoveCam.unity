@@ -808,6 +808,8 @@ MonoBehaviour:
   jumpeForce: 5
   secondJumpeForce: 5
   dJumpActivateGap: 1
+  dashGap: 1
+  dashForce: 25
   groundCheckRadius: 0.2
   groundLayers:
     serializedVersion: 2

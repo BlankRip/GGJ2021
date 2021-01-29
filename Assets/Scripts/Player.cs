@@ -13,24 +13,27 @@ public class Player : MonoBehaviour
     [Header("Jump")]
     public float jumpeForce = 5f;
     public float secondJumpeForce = 5f;
-    public float dashForce = 5f;
     [SerializeField] float dJumpActivateGap = 1f;
+
+    [Header("Dash")]
     [SerializeField] float dashGap = 1f;
+    public float dashForce = 5f;
+
+    [Header("Other Requirments")]
     [Range(0, 0.5f)] [SerializeField] float groundCheckRadius = 0.2f;
     [SerializeField] LayerMask groundLayers;
     [SerializeField] Transform feetPoint;
     public Transform playerModel;
-
     public UnityEvent OnLanding;
+
+    
     private float horizontalInput;
     private float currentSpeed, airSpeed;
-
     private Rigidbody2D myRb;
     private Quaternion trunAngle;
-    private bool jump, secondJump, doublJump, grounded, wasGrounded, movementLock, lookLeft, canDash;
+    private bool jump, secondJump, doublJump, canDash, dash, grounded, wasGrounded, movementLock, lookLeft;
 
-    private void Start()
-    {
+    private void Start() {
         myRb = GetComponent<Rigidbody2D>();
         canDash = true;
         currentSpeed = speed;
@@ -41,39 +44,31 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (!movementLock)
-        {
+        if (!movementLock) {
             horizontalInput = Input.GetAxis("Horizontal");
 
             // Player's Rotation Update
-            if (horizontalInput < 0)
-            {
+            if (horizontalInput < 0) {
                 trunAngle = Quaternion.Euler(new Vector3(playerModel.rotation.x, 180f, playerModel.rotation.z));
                 lookLeft = true;
-            }
-            else if (horizontalInput > 0)
-            {
+            } else if (horizontalInput > 0) {
                 trunAngle = Quaternion.Euler(new Vector3(playerModel.rotation.x, 0f, playerModel.rotation.z));
                 lookLeft = false;
             }
 
             #region Jumping
             //If player is not sliding and is on the ground then trigger a jump
-            if (grounded && (Input.GetKeyDown(KeyCode.Space)))
-            {
+            if (grounded && (Input.GetKeyDown(KeyCode.Space))) {
                 jump = true;
 
-                if (true)
-                {
+                if (true) {
                     StopCoroutine(ActivateDoubleJump());
                     StartCoroutine(ActivateDoubleJump());
                 }
             }
 
-            if (true)
-            {
-                if (!grounded && doublJump && (Input.GetKeyDown(KeyCode.Space)))
-                {
+            if (true) {
+                if (!grounded && doublJump && (Input.GetKeyDown(KeyCode.Space))) {
                     secondJump = true;
                     doublJump = false;
                 }
@@ -82,8 +77,7 @@ public class Player : MonoBehaviour
         }
 
         #region Crouch
-        if (Input.GetKeyDown(KeyCode.LeftControl))
-        {
+        if (Input.GetKeyDown(KeyCode.LeftControl)) {
             myRb.velocity = Vector3.zero;
             movementLock = true;
         }
@@ -94,38 +88,27 @@ public class Player : MonoBehaviour
 
         #region Dash
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
-        {
-            if (lookLeft)
-                Dash(-transform.right, dashForce);
-            if (!lookLeft)
-                Dash(transform.right, dashForce);
-        }
+            dash = true;
         #endregion
     }
 
-    private void FixedUpdate()
-    {
-        if (!movementLock)
-        {
+    private void FixedUpdate() {
+        if (!movementLock) {
             #region Physics Overlaps & Ground Checks
             wasGrounded = grounded;
-            if (Physics2D.OverlapCircle(new Vector2(feetPoint.position.x, feetPoint.position.y), groundCheckRadius, groundLayers))
-            {
+            if (Physics2D.OverlapCircle(new Vector2(feetPoint.position.x, feetPoint.position.y), groundCheckRadius, groundLayers)) {
                 grounded = true;
 
                 //If player was not grounded before that means he was in the air
                 //so that results in him just landing and calling the on land event
                 if (!wasGrounded)
                     OnLanding.Invoke();
-            }
-            else
-            {
+            } else {
                 grounded = false;
 
                 //If player was grounded before then he just went air bound
                 //so we do things that needed to do when player goes air bound
-                if (wasGrounded)
-                {
+                if (wasGrounded) {
                     airSpeed = currentSpeed;
                     doublJump = true;
                 }
@@ -137,25 +120,31 @@ public class Player : MonoBehaviour
     }
 
     //The function that handels all the player movement
-    private void Movement()
-    {
+    private void Movement() {
         Vector2 targetVelocity;
 
         playerModel.rotation = Quaternion.Slerp(playerModel.rotation, trunAngle, rotationSpeed * Time.deltaTime);
 
         //Add a force if the jump is triggered
-        if (jump)
-        {
+        if (jump) {
             myRb.AddForce(new Vector2(0, jumpeForce), ForceMode2D.Impulse);
             jump = false;
         }
 
         //Add a force if the double jump is triggered
-        if (secondJump)
-        {
+        if (secondJump) {
             myRb.velocity = new Vector2(myRb.velocity.x, 0);
             myRb.AddForce(new Vector2(0, secondJumpeForce), ForceMode2D.Impulse);
             secondJump = false;
+        }
+
+        //Add a force if the dash is triggered
+        if(dash) {
+            dash = false;
+            if (lookLeft)
+                Dash(-transform.right);
+            if (!lookLeft)
+                Dash(transform.right);
         }
 
         //If player is on the ground use regular speed else use the air bound speed
@@ -167,18 +156,17 @@ public class Player : MonoBehaviour
         myRb.velocity = Vector2.Lerp(myRb.velocity, targetVelocity, lerpSpeed * Time.deltaTime);
     }
 
-    //Function for activating double jump
-    private IEnumerator ActivateDoubleJump()
+    private void Dash(Vector3 dashDirection)
     {
-        yield return new WaitForSeconds(dJumpActivateGap);
-        doublJump = true;
-    }
-
-    private void Dash(Vector3 dashDirection, float dashforce)
-    {
-        myRb.AddForce(dashDirection * dashforce, ForceMode2D.Impulse);
+        myRb.AddForce(dashDirection * dashForce, ForceMode2D.Impulse);
         canDash = false;
         StartCoroutine(DashCooldown());
+    }
+
+    //Function for activating double jump
+    private IEnumerator ActivateDoubleJump() {
+        yield return new WaitForSeconds(dJumpActivateGap);
+        doublJump = true;
     }
 
     private IEnumerator DashCooldown()
@@ -187,8 +175,7 @@ public class Player : MonoBehaviour
         canDash = true;
     }
 
-    private void OnDrawGizmos()
-    {
+    private void OnDrawGizmos() {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(feetPoint.position, groundCheckRadius);
 
