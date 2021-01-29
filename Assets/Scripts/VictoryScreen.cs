@@ -15,9 +15,6 @@ public class VictoryScreen : MonoBehaviour
 
     private IEnumerator TriggerOnVideoEnd() {
         yield return new WaitForSeconds((float)creditsClip.length);
-        //Setting game progress to be game completed
-        if(ProgressTracker.instance != null)
-            ProgressTracker.instance.GameCompleted();
 
         fadeOutPanel.SetActive(true);
     }

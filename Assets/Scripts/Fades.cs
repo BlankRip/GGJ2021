@@ -11,14 +11,12 @@ public class Fades : MonoBehaviour
 
     private void SceneSwitch() {
         if(menuScene) {
-            SceneManager.LoadScene(ProgressTracker.instance.gameProgress.currentLevelIndex);
+            SceneManager.LoadScene(1);
         } else if(retry) {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         } else {
             if(!finalScene) {
                 int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-                if(ProgressTracker.instance != null)
-                    ProgressTracker.instance.UpdateCurrentLevel(nextSceneIndex);
                 SceneManager.LoadScene(nextSceneIndex);
             } else
                 SceneManager.LoadScene(0);
@@ -36,7 +34,7 @@ public class Fades : MonoBehaviour
 
     private void Deactivate() {
         if(GameManager.instance != null)
-            GameManager.instance.playerScript.UnlockMovment();
+            GameManager.instance.playerScript.UnlockMovement();
         gameObject.SetActive(false);
     }
 }
