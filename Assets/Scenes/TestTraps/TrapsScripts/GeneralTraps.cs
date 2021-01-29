@@ -4,9 +4,9 @@ using UnityEngine;
 
 public abstract class GeneralTraps : MonoBehaviour
 {
-    public static float trapSpeed = 1;
+    public static float trapSpeed = 3;
     protected float timer = 0;
-
+    protected float randomTimer = 0;
     protected abstract void TrapMovement();
 
     protected Vector3 startPos;
@@ -18,6 +18,8 @@ public abstract class GeneralTraps : MonoBehaviour
     {
         TrapMovement();
         print(trapSpeed);
+        //print(timer);
+        //print(randomTimer);
     }
 }
 
@@ -25,7 +27,7 @@ public abstract class GeneralTraps : MonoBehaviour
 - Change all collison code to 2D
 - pressure plate puzzle
 - static spike trap
-
+- squashing wall
 //
 
     test with fukermain ctrl c & ctrl v

@@ -15,14 +15,14 @@ public class WallTrap : GeneralTraps
     {
         timer += Time.deltaTime;
 
-        if (timer < 2)
+        if (timer < 3)//inactive for 3 seconds
         {
-            transform.position = Vector3.Lerp(transform.position, endPos, Time.deltaTime * trapSpeed/2);
+            transform.position = Vector3.Lerp(transform.position, endPos, Time.deltaTime * (trapSpeed / 4));
         }
-        if (timer > 2)
+        if (timer > 4)//active for 2 seconds
         {
-            transform.position = Vector3.Lerp(transform.position, startPos, Time.deltaTime * trapSpeed/2);
-            if (timer >= 4)
+            transform.position = Vector3.Lerp(transform.position, startPos, Time.deltaTime * (trapSpeed * 2));
+            if (timer >= 5)
             {
                 timer = 0;
             }
