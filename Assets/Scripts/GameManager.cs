@@ -9,8 +9,8 @@ public class GameManager : MonoBehaviour
 
     public Text dialogueTextSpace;
     public GameObject dialoguePannel;
-    public Player playerScript;
     public Fades fadeOut;
+    public Player playerScript;
     public Camera2DPlatformer gameCamScript;
 
     private void Awake() {
