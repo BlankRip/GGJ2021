@@ -49,6 +49,7 @@ public class Perks : MonoBehaviour
 
     [Header("Other Genders")]
     [SerializeField] float timeToSwitch;
+    [SerializeField] bool swith3 = false;
 
     private Player theScript;
     private float initialSpeed;
@@ -58,7 +59,7 @@ public class Perks : MonoBehaviour
     float timer = 0;
 
     List<string> inactivePerks = new List<string>{ "Speed", "Jump", "Dash", "Decay", "DoubleJump"};
-    List<string> activePerks = new List<string>();
+    string[] activePerks = new string[3];
     private GameObject[] slottedIn = new GameObject[3];
 
     private void Start() {
@@ -84,12 +85,20 @@ public class Perks : MonoBehaviour
 
     private void Switch()
     {
-        int rand = Random.Range(0, activePerks.Count);
-        string toRemove = activePerks[rand];
-        PickPerk(rand);
-        activePerks.Remove(toRemove);
-        ResetStats(toRemove);
-        inactivePerks.Add(toRemove);
+        if(!swith3) {
+            int rand = Random.Range(0, activePerks.Length);
+            string toRemove = activePerks[rand];
+            PickPerk(rand);
+            ResetStats(toRemove);
+            inactivePerks.Add(toRemove);
+        } else {
+            for (int i = 0; i < 3; i++) {
+                string needRemove = activePerks[i];
+                PickPerk(i);
+                ResetStats(needRemove);
+                inactivePerks.Add(needRemove);
+            }
+        }
     }
 
     private void SwithSlotUI(int slotId, GameObject obj) {
@@ -123,7 +132,8 @@ public class Perks : MonoBehaviour
 
     private void SpeedPerks(int slotId) {
         inactivePerks.Remove("Speed");
-        activePerks.Add("Speed");
+        //activePerks.Add("Speed");
+        activePerks[slotId] = "Speed";
         float picker = Random.Range(0.5f, 2.5f);
         if(picker > 1.2f) {
             //then increase perk
@@ -139,7 +149,8 @@ public class Perks : MonoBehaviour
 
     private void JumpPerks(int slotId) {
         inactivePerks.Remove("Jump");
-        activePerks.Add("Jump");
+        //activePerks.Add("Jump");
+        activePerks[slotId] = "Jump";
         float picker = Random.Range(0.5f, 2.5f);
         if(picker > 1.4f) {
             //then increase perk
@@ -158,7 +169,8 @@ public class Perks : MonoBehaviour
 
     private void DecayPerks(int slotId) {
         inactivePerks.Remove("Decay");
-        activePerks.Add("Decay");
+        //activePerks.Add("Decay");
+        activePerks[slotId] = "Decay";
         float picker = Random.Range(0.5f, 3.4f);
         if(picker > 0.4f && picker < 1.75f) {
             //then increase perk
@@ -178,14 +190,16 @@ public class Perks : MonoBehaviour
 
     private void DoubleJump(int slotId) {
         inactivePerks.Remove("DoubleJump");
-        activePerks.Add("DoubleJump");
+        activePerks[slotId] = "DoubleJump";
+        //activePerks.Add("DoubleJump");
         SwithSlotUI(slotId, djObj);
         theScript.jumpenni = true;
     }
 
     private void DashingMan(int slotId) {
         inactivePerks.Remove("Dash");
-        activePerks.Add("Dash");
+        activePerks[slotId] = "Dash";
+        //activePerks.Add("Dash");
         SwithSlotUI(slotId, ddObj);
         theScript.dasher = true;
     }
