@@ -16,6 +16,9 @@
             "m_Id": "e81e61b32bbe4ad8872500bd2f75d8d5"
         },
         {
+            "m_Id": "1847937874e24b0f9f066ce66490fd26"
+        },
+        {
             "m_Id": "e62c0f6ea937471695906a86f7c06e53"
         },
         {
@@ -83,6 +86,9 @@
         },
         {
             "m_Id": "a7a2d0ed466a43c3800ffa69e80af66c"
+        },
+        {
+            "m_Id": "acbf36a483fe4dea98acd8f2147ab852"
         }
     ],
     "m_GroupDatas": [],
@@ -252,6 +258,20 @@
             "m_InputSlot": {
                 "m_Node": {
                     "m_Id": "f27762d31c784f088d2200d151e69189"
+                },
+                "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "acbf36a483fe4dea98acd8f2147ab852"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "bf73aa14a4ea4a40837211bedc3ee96d"
                 },
                 "m_SlotId": 0
             }
@@ -453,6 +473,30 @@
         "m_SerializableColors": []
     },
     "m_SerializedDescriptor": "VertexDescription.Tangent"
+}
+
+{
+    "m_SGVersion": 3,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.ColorShaderProperty",
+    "m_ObjectId": "1847937874e24b0f9f066ce66490fd26",
+    "m_Guid": {
+        "m_GuidSerialized": "cdb9c6e6-f10b-442e-aa5f-1df7c8cde8e9"
+    },
+    "m_Name": "GroundLight",
+    "m_DefaultReferenceName": "",
+    "m_OverrideReferenceName": "Color_3",
+    "m_GeneratePropertyBlock": true,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "r": 0.0,
+        "g": 0.0,
+        "b": 0.0,
+        "a": 0.0
+    },
+    "m_ColorMode": 0
 }
 
 {
@@ -1222,6 +1266,31 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
+    "m_ObjectId": "6a9dedd4f5cc43ae97a1ef78bd14938f",
+    "m_Id": 0,
+    "m_DisplayName": "GroundLight",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "6ce422123a0d4d33b5e38ae353007f1e",
     "m_Id": 0,
@@ -1594,6 +1663,40 @@
         "w": 0.0
     },
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "acbf36a483fe4dea98acd8f2147ab852",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -1014.4000244140625,
+            "y": -219.20001220703126,
+            "width": 0.0,
+            "height": 0.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "6a9dedd4f5cc43ae97a1ef78bd14938f"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "1847937874e24b0f9f066ce66490fd26"
+    }
 }
 
 {
