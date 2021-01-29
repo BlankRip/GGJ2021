@@ -2,20 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    [Header("Health System")]
+    [SerializeField] float maxHealth = 1200;
+    public float healthDcayRate = -3;
+    [SerializeField] Slider slider;
+
     [Header("Movement")]
-    [SerializeField] float speed = 5f;
+    public float speed = 5f;
     [SerializeField] float rotationSpeed = 10;
     [SerializeField] float lerpSpeed = 10;
 
     [Header("Jump")]
+    public bool jumpenni;
     public float jumpeForce = 5f;
     public float secondJumpeForce = 5f;
     [SerializeField] float dJumpActivateGap = 1f;
 
     [Header("Dash")]
+    public bool dasher;
     [SerializeField] float dashGap = 1f;
     public float dashForce = 5f;
 
@@ -27,8 +35,11 @@ public class Player : MonoBehaviour
     public UnityEvent OnLanding;
 
     
+    private float currentHealth;
     private float horizontalInput;
     private float currentSpeed, airSpeed;
+    private Image fill;
+    private Color fillcolor;
     private Rigidbody2D myRb;
     private Quaternion trunAngle;
     private bool jump, secondJump, doublJump, canDash, dash, grounded, wasGrounded, movementLock, lookLeft;
@@ -37,6 +48,10 @@ public class Player : MonoBehaviour
         myRb = GetComponent<Rigidbody2D>();
         canDash = true;
         currentSpeed = speed;
+        currentHealth = maxHealth;
+        slider.value = slider.maxValue;
+        fill = slider.fillRect.gameObject.GetComponent<Image>();
+        fillcolor = fill.color;
 
         if (OnLanding == null)
             OnLanding = new UnityEvent();
@@ -44,6 +59,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        HealthSystem();
         if (!movementLock) {
             horizontalInput = Input.GetAxis("Horizontal");
 
@@ -61,13 +77,13 @@ public class Player : MonoBehaviour
             if (grounded && (Input.GetKeyDown(KeyCode.Space))) {
                 jump = true;
 
-                if (true) {
+                if (jumpenni) {
                     StopCoroutine(ActivateDoubleJump());
                     StartCoroutine(ActivateDoubleJump());
                 }
             }
 
-            if (true) {
+            if (jumpenni) {
                 if (!grounded && doublJump && (Input.GetKeyDown(KeyCode.Space))) {
                     secondJump = true;
                     doublJump = false;
@@ -87,8 +103,10 @@ public class Player : MonoBehaviour
         #endregion
 
         #region Dash
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        if(dasher) {
+            if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
             dash = true;
+        }
         #endregion
     }
 
@@ -117,6 +135,20 @@ public class Player : MonoBehaviour
 
             Movement();
         }
+    }
+
+    private void HealthSystem() {
+        if(currentHealth > 0) {
+            currentHealth += Time.deltaTime * healthDcayRate;
+            currentHealth = Mathf.Clamp(currentHealth, -3, maxHealth);
+            float barValue = Mathf.InverseLerp(0, maxHealth, currentHealth);
+            slider.value = barValue;
+            fillcolor.r = 1 - barValue;
+            fillcolor.g = barValue;
+            fill.color = fillcolor;
+        }
+        else
+            GameOver();
     }
 
     //The function that handels all the player movement
@@ -156,11 +188,16 @@ public class Player : MonoBehaviour
         myRb.velocity = Vector2.Lerp(myRb.velocity, targetVelocity, lerpSpeed * Time.deltaTime);
     }
 
+    //Function that makes the player dash in given direction
     private void Dash(Vector3 dashDirection)
     {
         myRb.AddForce(dashDirection * dashForce, ForceMode2D.Impulse);
         canDash = false;
         StartCoroutine(DashCooldown());
+    }
+
+    private void GameOver() {
+        Debug.Log("<color=red>GAME-OVER</color>");
     }
 
     //Function for activating double jump
