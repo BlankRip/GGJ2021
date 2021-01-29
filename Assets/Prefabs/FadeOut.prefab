@@ -105,7 +105,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7822009823016628926}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a32326a48000ba7469c2574f08594062, type: 3}
+  m_Script: {fileID: 11500000, guid: 1721ee94208d924499d2105573dc8980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   finalScene: 0
+  menuScene: 0
+  retry: 0
