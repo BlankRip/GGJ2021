@@ -49,7 +49,6 @@ public class Perks : MonoBehaviour
 
     [Header("Other Genders")]
     [SerializeField] float timeToSwitch;
-    [SerializeField] bool swith3 = false;
 
     private Player theScript;
     private float initialSpeed;
@@ -85,21 +84,14 @@ public class Perks : MonoBehaviour
 
     private void Switch()
     {
-        if(!swith3) {
-            int rand = Random.Range(0, activePerks.Length);
-            string toRemove = activePerks[rand];
-            PickPerk(rand);
-            ResetStats(toRemove);
-            inactivePerks.Add(toRemove);
-        } else {
-            for (int i = 0; i < 3; i++) {
-                string needRemove = activePerks[i];
-                PickPerk(i);
-                ResetStats(needRemove);
-                inactivePerks.Add(needRemove);
-            }
+        for (int i = 0; i < 3; i++)
+        {
+            string needRemove = activePerks[i];
+            PickPerk(i);
+            ResetStats(needRemove);
+            inactivePerks.Add(needRemove);
         }
-    }
+    }   
 
     private void SwithSlotUI(int slotId, GameObject obj) {
         obj.transform.position = slots[slotId].transform.position;
