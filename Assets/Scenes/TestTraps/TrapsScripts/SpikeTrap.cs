@@ -15,21 +15,21 @@ public class SpikeTrap : GeneralTraps
     {
         timer += Time.deltaTime;
 
-        if (timer < 3)
+        if (timer < 2f) //active for 2 seconds
         {
             transform.position = Vector3.Lerp(transform.position, endPos, Time.deltaTime * trapSpeed);
         }
-        if (timer > 3)
+        if (timer > 2f) //inactive for 3 seconds
         {
             transform.position = Vector3.Lerp(transform.position, startPos, Time.deltaTime * trapSpeed);
-            if (timer >= 6)
+            if (timer >= 5)
             {
                 timer = 0;
             }
         }
     }
 
-    private void OnCollisionEnter(Collision collision) //CHANGE TO 2D
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == ("Player"))
         {
