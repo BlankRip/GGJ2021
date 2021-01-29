@@ -212,6 +212,16 @@ public class Player : MonoBehaviour
         canDash = true;
     }
 
+    public void LockMovement()
+    {
+        movementLock = true;
+    }
+
+    public void UnlockMovement()
+    {
+        movementLock = false;
+    }
+
     private void OnDrawGizmos() {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(feetPoint.position, groundCheckRadius);
