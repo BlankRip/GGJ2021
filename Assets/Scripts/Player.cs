@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     public UnityEvent OnLanding;
 
     [Header("Audio")]
-    [SerializeField] AudioSource playerSFXSRC;
+    public AudioSource playerSFXSRC;
     [SerializeField] AudioClip jumpSound;
     [SerializeField] AudioClip dashSound;
 
