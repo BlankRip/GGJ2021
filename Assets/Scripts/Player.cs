@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     public bool dasher;
     [SerializeField] float dashGap = 1f;
     public float dashForce = 5f;
+    [SerializeField] ParticleSystem dashEffect;
 
     [Header("Other Requirements")]
     [Range(0, 0.5f)] [SerializeField] float groundCheckRadius = 0.2f;
@@ -122,6 +123,9 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
             {
                 playerSFXSRC.PlayOneShot(dashSound);
+                dashEffect.Stop();
+                dashEffect.Clear();
+                dashEffect.Play();
                 dash = true;
             }
         }
