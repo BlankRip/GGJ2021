@@ -22,7 +22,7 @@ public class TypeWriteText : MonoBehaviour
     {
         text = GameManager.instance.dialogueTextSpace;
         dialoguePanel = GameManager.instance.dialoguePannel;
-        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
 
