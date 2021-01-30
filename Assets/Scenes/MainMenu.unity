@@ -3357,7 +3357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8152330194097332208, guid: 332b5aa562380dc4fa5c12a5b796c0b9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8152330194097332215, guid: 332b5aa562380dc4fa5c12a5b796c0b9, type: 3}
       propertyPath: m_Pivot.x
@@ -5171,7 +5171,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ddad0429100eac842a5f19cb209fca30, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -5267,7 +5267,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1914e1bdb4896af48a313b887d1d3877, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.57
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -5474,6 +5474,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1902180766}
     m_Modifications:
+    - target: {fileID: 7822009823016628917, guid: 2c68cb0212a2b07409b719463c57edef, type: 3}
+      propertyPath: menuScene
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7822009823016628921, guid: 2c68cb0212a2b07409b719463c57edef, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
