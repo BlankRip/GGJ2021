@@ -5,7 +5,8 @@ using UnityEngine;
 public class Paralax : MonoBehaviour
 {
     [SerializeField] float farPointDistance;
-    [SerializeField] float thisLayerDistance;
+    [SerializeField] float thisLayerDistanceX, thisLayerDistanceY;
+    [SerializeField] bool paralaxX = true, paralaxY;
     Transform MainCameraTransform;
     static Vector3 tempVec3;
 
@@ -18,9 +19,15 @@ public class Paralax : MonoBehaviour
 
     void Update()
     {
-        float sideToFarpointRation = MainCameraTransform.position.x / farPointDistance;
-        tempVec3 = transform.position;
-        tempVec3.x = sideToFarpointRation * (farPointDistance - thisLayerDistance);
+            tempVec3 = transform.position;
+        if(paralaxX){
+            float sideToFarpointRationX = MainCameraTransform.position.x / farPointDistance;
+            tempVec3.x = sideToFarpointRationX * (farPointDistance - thisLayerDistanceX);
+        }
+        if(paralaxY){
+              float sideToFarpointRationY = MainCameraTransform.position.y / farPointDistance;
+            tempVec3.y = sideToFarpointRationY * (farPointDistance - thisLayerDistanceY);
+        }
         transform.position = tempVec3;
     }
 }
