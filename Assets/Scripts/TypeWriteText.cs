@@ -15,7 +15,7 @@ public class TypeWriteText : MonoBehaviour
     int dialogIndex;                                              // Keeping track of which dialog is being displayed
     int replayTimes;                                              // The number of times replayed
     bool reset;                                                   // check if replayed then reset all the values
-    [SerializeField] AudioClip keyPress;
+    [SerializeField] List<AudioClip> dialogues;
     AudioSource audioSource;
 
     private void Start()
@@ -33,6 +33,7 @@ public class TypeWriteText : MonoBehaviour
         if(text.text.Length == myDialogs[dialogIndex].Length) {
             StopAllCoroutines();
             dialogIndex++;
+            audioSource.Stop();
             // If the last dialog was displayed then turn off the pannal else move to displaying the next dialog
             if (dialogIndex >= myDialogs.Length) {
                 endConvoEvent?.Invoke();
@@ -52,6 +53,11 @@ public class TypeWriteText : MonoBehaviour
     //Resets the converation to the first dialogue, can also be called start conversation function
     public bool StartDialogue() {
         dialogIndex = 0;
+        if (!audioSource.isPlaying)
+        {
+            audioSource.Stop();
+            audioSource.PlayOneShot(dialogues[dialogIndex]);
+        }
         dialoguePanel.SetActive(true);
         StartCoroutine(TypeWriteEffect());                        // Displaying the first dialog when the pannel appears
 
@@ -73,10 +79,11 @@ public class TypeWriteText : MonoBehaviour
             if (index >= myDialogs[dialogIndex].Length)
                 break;
             text.text += myDialogs[dialogIndex][index].ToString();
-            if (audioSource.isPlaying)
+            if (!audioSource.isPlaying)
+            {
                 audioSource.Stop();
-            audioSource.PlayOneShot(keyPress);
-            audioSource.pitch = Random.Range(-3, 3);
+                audioSource.PlayOneShot(dialogues[dialogIndex]);
+            }
             index++;
             yield return new WaitForSeconds(typeSpeed);         //The time gap between the display of each letter
         }

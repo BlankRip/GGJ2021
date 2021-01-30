@@ -6550,6 +6550,7 @@ MonoBehaviour:
   dasher: 0
   dashGap: 1
   dashForce: 25
+  dashEffect: {fileID: 0}
   groundCheckRadius: 0.2
   groundLayers:
     serializedVersion: 2
@@ -6612,6 +6613,8 @@ Transform:
   m_Children:
   - {fileID: 387026943}
   - {fileID: 983765851}
+  - {fileID: 1675836444}
+  - {fileID: 1375638119}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9271,6 +9274,68 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 343e5fd91043f664eabe49338db269b7, type: 3}
+--- !u!1001 &1375638118
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1024510710}
+    m_Modifications:
+    - target: {fileID: 1203239358391884510, guid: b7b114c49f640ed4d88f6f517ea348d0, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203239358391884510, guid: b7b114c49f640ed4d88f6f517ea348d0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203239358391884510, guid: b7b114c49f640ed4d88f6f517ea348d0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203239358391884510, guid: b7b114c49f640ed4d88f6f517ea348d0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203239358391884510, guid: b7b114c49f640ed4d88f6f517ea348d0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203239358391884510, guid: b7b114c49f640ed4d88f6f517ea348d0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203239358391884510, guid: b7b114c49f640ed4d88f6f517ea348d0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203239358391884510, guid: b7b114c49f640ed4d88f6f517ea348d0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203239358391884510, guid: b7b114c49f640ed4d88f6f517ea348d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203239358391884510, guid: b7b114c49f640ed4d88f6f517ea348d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203239358391884510, guid: b7b114c49f640ed4d88f6f517ea348d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203239358391884511, guid: b7b114c49f640ed4d88f6f517ea348d0, type: 3}
+      propertyPath: m_Name
+      value: Smoke Jump
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b7b114c49f640ed4d88f6f517ea348d0, type: 3}
+--- !u!4 &1375638119 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1203239358391884510, guid: b7b114c49f640ed4d88f6f517ea348d0, type: 3}
+  m_PrefabInstance: {fileID: 1375638118}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1377764257
 GameObject:
   m_ObjectHideFlags: 0
@@ -9803,15 +9868,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myDialogs:
-  - This is for testing.
-  - So Will have 3 dialogues and the loast one will be long.
-  - This is the long one. so here comes the spam, dasjfgniajvnoiubnjkfbnaljkdbnfiubnajkfbnaijalfdkjnafbnarjkvbadfnbjidfkbnlijbkafdbujn
+  - Yo yo yo, listen, you need to get out of this place. They are coming to destroy
+    all of us.
+  - You need to go fast though, they've corrupted our software.
+  - So on the way you will lose some of your abilities, and face some obstacles.
+  - But the virus has a side effect, you may find yourself with new ones in place
+    of the old ones.
+  - It may be good or bad but I can't help you there.
+  - 'I need to go now, but here''s the basics. Move with W, A, S, D. '
+  - Use control to crouch and left shift to boost.
+  - Good thing I can break the fourth wall huh.
+  - Alright, I'll see you later.
   typeSpeed: 0.023
   replayable: 0
   endConvoEvent:
     m_PersistentCalls:
       m_Calls: []
-  keyPress: {fileID: 0}
+  dialogues:
+  - {fileID: 8300000, guid: 0094cdaabea41014a81c91a1f78b2f8b, type: 3}
+  - {fileID: 8300000, guid: 0eeea506d196e5f4c99a0d63b6062665, type: 3}
+  - {fileID: 8300000, guid: f389371bce84839499758ee9c3c6e39e, type: 3}
+  - {fileID: 8300000, guid: 1424fdde8de64f345a73ed846ce5ab92, type: 3}
+  - {fileID: 8300000, guid: 83c205f8bc55ee940beb86944e4cdb81, type: 3}
+  - {fileID: 8300000, guid: 88400d610c30ee6429059f2ef31d26d8, type: 3}
+  - {fileID: 8300000, guid: f3ad22b98b9b1de4d9811079999ea069, type: 3}
+  - {fileID: 8300000, guid: 2158d1f61d88ed9409b123785e89f050, type: 3}
+  - {fileID: 8300000, guid: 4bc249b6f6e38f14494a726b00f702dc, type: 3}
 --- !u!61 &1434303964
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11311,6 +11393,68 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1998703012358636852, guid: 5fa3982448b96b149a110eac0da2989d, type: 3}
   m_PrefabInstance: {fileID: 1659298693}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1675836443
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1024510710}
+    m_Modifications:
+    - target: {fileID: 1203239358391884510, guid: e4a862175ad4c334aaab3b04a19988d3, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203239358391884510, guid: e4a862175ad4c334aaab3b04a19988d3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203239358391884510, guid: e4a862175ad4c334aaab3b04a19988d3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203239358391884510, guid: e4a862175ad4c334aaab3b04a19988d3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203239358391884510, guid: e4a862175ad4c334aaab3b04a19988d3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203239358391884510, guid: e4a862175ad4c334aaab3b04a19988d3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203239358391884510, guid: e4a862175ad4c334aaab3b04a19988d3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203239358391884510, guid: e4a862175ad4c334aaab3b04a19988d3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203239358391884510, guid: e4a862175ad4c334aaab3b04a19988d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203239358391884510, guid: e4a862175ad4c334aaab3b04a19988d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203239358391884510, guid: e4a862175ad4c334aaab3b04a19988d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203239358391884511, guid: e4a862175ad4c334aaab3b04a19988d3, type: 3}
+      propertyPath: m_Name
+      value: Dash
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e4a862175ad4c334aaab3b04a19988d3, type: 3}
+--- !u!4 &1675836444 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1203239358391884510, guid: e4a862175ad4c334aaab3b04a19988d3, type: 3}
+  m_PrefabInstance: {fileID: 1675836443}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1686951000
 PrefabInstance:
