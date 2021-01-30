@@ -21,8 +21,8 @@ public class GameManager : MonoBehaviour
         playerScript = FindObjectOfType<Player>();
         gameCamScript = FindObjectOfType<Camera2DPlatformer>();
 
-        //Cursor.visible = false;
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void GameOver() {

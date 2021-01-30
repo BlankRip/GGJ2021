@@ -7,6 +7,11 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] GameObject fadeOutPanel;
 
+    private void Start() {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
     public void PlayButton() {
         fadeOutPanel.SetActive(true);
     }
