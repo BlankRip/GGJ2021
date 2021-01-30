@@ -15855,6 +15855,7 @@ MonoBehaviour:
   - Seems like I've put you in a bad spot huh
   - Don't worry, keep going ahead.
   - You can make it to the facility in time.
+  - Also, I've made it so that if you crouch you will decay slower.
   typeSpeed: 0.023
   replayable: 0
   endConvoEvent:
@@ -15867,6 +15868,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a730e0f5272a4c740ba4954b377f3745, type: 3}
   - {fileID: 8300000, guid: 20fb6d1a14cbfc648b080d13fa648bda, type: 3}
   - {fileID: 8300000, guid: e02ca5b8e38bcca4ab0b885cca4311a5, type: 3}
+  - {fileID: 8300000, guid: 2a52dc56501a8c3419682c36fde73ddc, type: 3}
 --- !u!61 &1434303964
 BoxCollider2D:
   m_ObjectHideFlags: 0
