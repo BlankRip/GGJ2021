@@ -51,6 +51,7 @@ public class Perks : MonoBehaviour
     [SerializeField] float timeToSwitch;
     [SerializeField] AudioClip perkSwitch;
 
+    private AudioSource soundSource;
     private Player theScript;
     private float initialSpeed;
     private float initialJump;
@@ -63,6 +64,7 @@ public class Perks : MonoBehaviour
     private GameObject[] slottedIn = new GameObject[3];
 
     private void Start() {
+        soundSource = GetComponent<AudioSource>();
         theScript = GameManager.instance.playerScript;
         initialSpeed = theScript.speed;
         initialJump = theScript.jumpeForce;
@@ -93,7 +95,7 @@ public class Perks : MonoBehaviour
             inactivePerks.Add(needRemove);
         }
 
-        GameManager.instance.playerScript.playerSFXSRC.PlayOneShot(perkSwitch);
+        soundSource.PlayOneShot(perkSwitch);
     }   
 
     private void SwithSlotUI(int slotId, GameObject obj) {
