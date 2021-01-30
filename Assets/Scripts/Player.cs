@@ -176,6 +176,10 @@ public class Player : MonoBehaviour
             GameManager.instance.GameOver();
     }
 
+    public void Damaged(float dmage) {
+        currentHealth -= dmage;
+    }
+
     //The function that handels all the player movement
     private void Movement() {
         Vector2 targetVelocity;

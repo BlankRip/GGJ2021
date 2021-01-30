@@ -7,6 +7,7 @@ using UnityEngine;
 public class PuzzleDoor : MonoBehaviour
 {
     public GameObject[] plates;
+    [SerializeField] float changeInY = -3;
     public bool openDoor;
     Vector3 closedDoorPos;
     Vector3 openedDoorPos;
@@ -15,7 +16,7 @@ public class PuzzleDoor : MonoBehaviour
     void Start()
     {
         closedDoorPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        openedDoorPos = new Vector3(transform.position.x, transform.position.y + 3, transform.position.z);
+        openedDoorPos = new Vector3(transform.position.x, transform.position.y + changeInY, transform.position.z);
     }
 
     // Update is called once per frame

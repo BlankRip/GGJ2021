@@ -4,16 +4,13 @@ using UnityEngine;
 
 public class StaticSpikeTrap : GeneralTraps
 {
-    protected override void TrapMovement()
-    {
+    [SerializeField] float damage = 100;
 
-    }
+    protected override void TrapMovement() { }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == ("Player"))
-        {
-            //access comp & minus hp / apply knock back etc.
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.CompareTag("Player")) {
+            GameManager.instance.playerScript.Damaged(damage);
         }
     }
 }
