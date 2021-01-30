@@ -527,11 +527,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 580947303723669326, guid: ca04241947974c54fb228c490cc79138, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.73
+      value: -1.02
       objectReference: {fileID: 0}
     - target: {fileID: 580947303723669326, guid: ca04241947974c54fb228c490cc79138, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.65
+      value: -0.27
       objectReference: {fileID: 0}
     - target: {fileID: 580947303723669326, guid: ca04241947974c54fb228c490cc79138, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7188,6 +7188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f168624ef4bdf5e48830a8da29f472b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myAnimator: {fileID: 1431473689}
   maxHealth: 1200
   healthDcayRate: -10
   slider: {fileID: 244130327}

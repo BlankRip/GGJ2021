@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] Animator myAnimator;
     [Header("Health System")]
     [SerializeField] float maxHealth = 1200;
     public float healthDcayRate = -3;
@@ -44,6 +45,8 @@ public class Player : MonoBehaviour
     private float currentHealth;
     private float horizontalInput;
     private float currentSpeed, airSpeed;
+    private float initialZrot;
+    private float rotYState, rotZState;
     private Image fill;
     private Color fillcolor;
     private Rigidbody2D myRb;
@@ -58,6 +61,7 @@ public class Player : MonoBehaviour
         slider.value = slider.maxValue;
         fill = slider.fillRect.gameObject.GetComponent<Image>();
         fillcolor = fill.color;
+        initialZrot = playerModel.rotation.z;
 
         if (OnLanding == null)
             OnLanding = new UnityEvent();
@@ -73,11 +77,15 @@ public class Player : MonoBehaviour
 
             // Player's Rotation Update
             if (horizontalInput < 0) {
-                trunAngle = Quaternion.Euler(new Vector3(playerModel.rotation.x, 0f, playerModel.rotation.z));
+                rotYState = 0;
+                rotZState = initialZrot + 15;
                 lookLeft = true;
             } else if (horizontalInput > 0) {
-                trunAngle = Quaternion.Euler(new Vector3(playerModel.rotation.x, 180f, playerModel.rotation.z));
+                rotYState = 180;
+                rotZState = initialZrot + 15;
                 lookLeft = false;
+            } else {
+                rotZState = initialZrot;
             }
 
             #region Jumping
@@ -106,30 +114,41 @@ public class Player : MonoBehaviour
                 }
             }
             #endregion
+
+            #region Dash
+            if(dasher) {
+                if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+                {
+                    playerSFXSRC.PlayOneShot(dashSound);
+                    dashEffect.Stop();
+                    dashEffect.Clear();
+                    dashEffect.Play();
+                    dash = true;
+                }
+            }
+            #endregion
         }
+        else{
+            horizontalInput = 0;
+            rotZState = initialZrot;
+        }
+        
+        trunAngle = Quaternion.Euler(new Vector3(playerModel.rotation.x, rotYState, rotZState));
 
         #region Crouch
         if (Input.GetKeyDown(KeyCode.LeftControl)) {
+            myAnimator.SetTrigger("cDown");
             myRb.velocity = Vector3.zero;
             movementLock = true;
         }
 
-        if (Input.GetKeyUp(KeyCode.LeftControl))
+        if (Input.GetKeyUp(KeyCode.LeftControl)) {
+            myAnimator.SetTrigger("cUp");
             movementLock = false;
-        #endregion
-
-        #region Dash
-        if(dasher) {
-            if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
-            {
-                playerSFXSRC.PlayOneShot(dashSound);
-                dashEffect.Stop();
-                dashEffect.Clear();
-                dashEffect.Play();
-                dash = true;
-            }
         }
         #endregion
+
+        myAnimator.SetFloat("speed", Input.GetAxis("Horizontal"));
     }
 
     private void FixedUpdate() {
@@ -154,9 +173,9 @@ public class Player : MonoBehaviour
                 }
             }
             #endregion
-
-            Movement();
         }
+        
+        Movement();
     }
 
     private void HealthSystem() {
