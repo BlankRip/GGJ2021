@@ -66,8 +66,6 @@ public class Player : MonoBehaviour
 
         if (OnLanding == null)
             OnLanding = new UnityEvent();
-
-        //movementLock = true;
     }
 
     private void Update()
