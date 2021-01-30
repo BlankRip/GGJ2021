@@ -2632,7 +2632,7 @@ MonoBehaviour:
   - {fileID: 27758702}
   - {fileID: 1126639202}
   timeToSwitch: 6
-  perkSwitch: {fileID: 8300000, guid: ea845580a10ed284d90f6244a9c80b12, type: 3}
+  perkSwitch: {fileID: 8300000, guid: 380d4a1b5417f0a41b4e7daa133e4be7, type: 3}
 --- !u!114 &498654114
 MonoBehaviour:
   m_ObjectHideFlags: 0
