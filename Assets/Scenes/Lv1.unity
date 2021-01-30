@@ -9532,7 +9532,7 @@ MonoBehaviour:
   - But the virus has a side effect, you may find yourself with new ones in place
     of the old ones.
   - It may be good or bad but I can't help you there.
-  - 'I need to go now, but here''s the basics. Move with W, A, S, D. '
+  - I need to go now, but here's the basics. Move with Space, A & D.
   - Use control to crouch and left shift to boost.
   - Good thing I can break the fourth wall huh.
   - Alright, I'll see you later.
@@ -9547,7 +9547,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f389371bce84839499758ee9c3c6e39e, type: 3}
   - {fileID: 8300000, guid: 1424fdde8de64f345a73ed846ce5ab92, type: 3}
   - {fileID: 8300000, guid: 83c205f8bc55ee940beb86944e4cdb81, type: 3}
-  - {fileID: 8300000, guid: 88400d610c30ee6429059f2ef31d26d8, type: 3}
+  - {fileID: 8300000, guid: cbd064dce875d954a87d740b489aeca0, type: 3}
   - {fileID: 8300000, guid: f3ad22b98b9b1de4d9811079999ea069, type: 3}
   - {fileID: 8300000, guid: 2158d1f61d88ed9409b123785e89f050, type: 3}
   - {fileID: 8300000, guid: 4bc249b6f6e38f14494a726b00f702dc, type: 3}
