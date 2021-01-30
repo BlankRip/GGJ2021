@@ -41,6 +41,7 @@ public class Player : MonoBehaviour
     public AudioSource playerSFXSRC;
     [SerializeField] AudioClip jumpSound;
     [SerializeField] AudioClip dashSound;
+    [SerializeField] AudioClip damageSound;
 
     private float currentHealth;
     private float horizontalInput;
@@ -197,6 +198,7 @@ public class Player : MonoBehaviour
 
     public void Damaged(float dmage) {
         currentHealth -= dmage;
+        playerSFXSRC.PlayOneShot(damageSound);
     }
 
     //The function that handels all the player movement

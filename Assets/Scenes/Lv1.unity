@@ -6740,7 +6740,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: dbee969da2fc18542b2b8c26c0ca0794, type: 3}
+    m_Font: {fileID: 12800000, guid: dcdd0acdb8e28204a91a7f6f02900151, type: 3}
     m_FontSize: 172
     m_FontStyle: 0
     m_BestFit: 0
@@ -7216,6 +7216,7 @@ MonoBehaviour:
   playerSFXSRC: {fileID: 1024510711}
   jumpSound: {fileID: 8300000, guid: 3911e502067656c42a84700e1d0d777f, type: 3}
   dashSound: {fileID: 8300000, guid: ed621a2b810422f42a78026c79c786a7, type: 3}
+  damageSound: {fileID: 8300000, guid: 8c05510fd615e8c4ebed4b1f2fbb3356, type: 3}
 --- !u!50 &1024510708
 Rigidbody2D:
   serializedVersion: 4
