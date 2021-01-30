@@ -17,9 +17,6 @@ public abstract class GeneralTraps : MonoBehaviour
     private void Update()
     {
         TrapMovement();
-        print(trapSpeed);
-        //print(timer);
-        //print(randomTimer);
     }
 }
 

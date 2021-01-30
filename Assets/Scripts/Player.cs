@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
     private Color fillcolor;
     private Rigidbody2D myRb;
     private Quaternion trunAngle;
-    private bool jump, secondJump, doublJump, canDash, dash, grounded, wasGrounded, movementLock, lookLeft;
+    private bool jump, secondJump, doublJump, canDash, dash, crouch, grounded, wasGrounded, movementLock, lookLeft;
 
     private void Start() {
         myRb = GetComponent<Rigidbody2D>();
@@ -131,17 +131,21 @@ public class Player : MonoBehaviour
             horizontalInput = 0;
             rotZState = initialZrot;
         }
-        
-        trunAngle = Quaternion.Euler(new Vector3(playerModel.rotation.x, rotYState, rotZState));
+
+        if(!crouch) {
+            trunAngle = Quaternion.Euler(new Vector3(playerModel.rotation.x, rotYState, rotZState));
+        }
 
         #region Crouch
         if (Input.GetKeyDown(KeyCode.LeftControl)) {
+            crouch = true;
             myAnimator.SetTrigger("cDown");
             myRb.velocity = Vector3.zero;
             movementLock = true;
         }
 
         if (Input.GetKeyUp(KeyCode.LeftControl)) {
+            crouch = false;
             myAnimator.SetTrigger("cUp");
             movementLock = false;
         }
