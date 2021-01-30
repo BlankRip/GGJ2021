@@ -17,7 +17,8 @@ public class PressurePlate : MonoBehaviour
         pressed = false;
         pressedPos = new Vector3(transform.position.x, transform.position.y - 0.15f, transform.position.z);
         mainPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        sphereRenderer = sphereIndicator.GetComponent<Renderer>();
+        if (sphereIndicator != null)
+            sphereRenderer = sphereIndicator.GetComponent<Renderer>();
     }
 
     private void Update()
@@ -31,12 +32,14 @@ public class PressurePlate : MonoBehaviour
                 pressed = false;
                 timer = 0;
             }
-            sphereRenderer.material.color = Color.green;
+            if(sphereRenderer != null)
+                sphereRenderer.material.color = Color.green;
         }
         else
         {
             pressurePlateChild.transform.position = Vector3.Lerp(pressurePlateChild.transform.position, mainPos, Time.deltaTime * 2);
-            sphereRenderer.material.color = Color.red;
+            if(sphereRenderer != null)
+                sphereRenderer.material.color = Color.red;
         }
     }
 
