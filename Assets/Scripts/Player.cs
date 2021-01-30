@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     public float jumpeForce = 5f;
     public float secondJumpeForce = 5f;
     [SerializeField] float dJumpActivateGap = 1f;
+    [SerializeField] ParticleSystem jumpEffect;
 
     [Header("Dash")]
     public bool dasher;
@@ -84,6 +85,9 @@ public class Player : MonoBehaviour
                 jump = true;
                 
                 playerSFXSRC.PlayOneShot(jumpSound);
+                jumpEffect.Stop();
+                jumpEffect.Clear();
+                jumpEffect.Play();
 
                 if (jumpenni) {
                     StopCoroutine(ActivateDoubleJump());
@@ -95,6 +99,8 @@ public class Player : MonoBehaviour
                 if (!grounded && doublJump && (Input.GetKeyDown(KeyCode.Space))) {
                     secondJump = true;
                     playerSFXSRC.PlayOneShot(jumpSound);
+                    jumpEffect.Stop();
+                    jumpEffect.Play();
                     doublJump = false;
                 }
             }
