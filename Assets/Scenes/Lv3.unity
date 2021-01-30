@@ -1563,6 +1563,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7290832793570117033, guid: c82a629760b0efd41a58576852571869, type: 3}
   m_PrefabInstance: {fileID: 226766180}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &227346099 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1203239358391884508, guid: b7b114c49f640ed4d88f6f517ea348d0, type: 3}
+  m_PrefabInstance: {fileID: 1375638118}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &236136519 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5675425499236309636, guid: 5f52677a93279fc418d54b9f5b7c7d5f, type: 3}
@@ -3483,6 +3488,11 @@ Transform:
   m_Father: {fileID: 1564374698}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!198 &528162063 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1203239358391884508, guid: e4a862175ad4c334aaab3b04a19988d3, type: 3}
+  m_PrefabInstance: {fileID: 1675836443}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &541757409 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2053325477732312259, guid: 343e5fd91043f664eabe49338db269b7, type: 3}
@@ -6546,11 +6556,11 @@ MonoBehaviour:
   jumpeForce: 11
   secondJumpeForce: 11
   dJumpActivateGap: 1
-  jumpEffect: {fileID: 0}
+  jumpEffect: {fileID: 227346099}
   dasher: 0
   dashGap: 1
   dashForce: 25
-  dashEffect: {fileID: 0}
+  dashEffect: {fileID: 528162063}
   groundCheckRadius: 0.2
   groundLayers:
     serializedVersion: 2
