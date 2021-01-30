@@ -73,10 +73,10 @@ public class Player : MonoBehaviour
 
             // Player's Rotation Update
             if (horizontalInput < 0) {
-                trunAngle = Quaternion.Euler(new Vector3(playerModel.rotation.x, 180f, playerModel.rotation.z));
+                trunAngle = Quaternion.Euler(new Vector3(playerModel.rotation.x, 0f, playerModel.rotation.z));
                 lookLeft = true;
             } else if (horizontalInput > 0) {
-                trunAngle = Quaternion.Euler(new Vector3(playerModel.rotation.x, 0f, playerModel.rotation.z));
+                trunAngle = Quaternion.Euler(new Vector3(playerModel.rotation.x, 180f, playerModel.rotation.z));
                 lookLeft = false;
             }
 
