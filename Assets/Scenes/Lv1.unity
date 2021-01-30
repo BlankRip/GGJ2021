@@ -3262,11 +3262,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7822009823016628921, guid: 2c68cb0212a2b07409b719463c57edef, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -16.700195
+      value: -16.700073
       objectReference: {fileID: 0}
     - target: {fileID: 7822009823016628921, guid: 2c68cb0212a2b07409b719463c57edef, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -25.899902
+      value: -25.899841
       objectReference: {fileID: 0}
     - target: {fileID: 7822009823016628921, guid: 2c68cb0212a2b07409b719463c57edef, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4605,7 +4605,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 3840, y: 2160}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
