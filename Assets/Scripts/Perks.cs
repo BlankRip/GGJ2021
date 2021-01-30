@@ -47,8 +47,9 @@ public class Perks : MonoBehaviour
     [Header("Spawn Locals")]
     [SerializeField] GameObject[] slots = new GameObject[3];
 
-    [Header("Other Genders")]
+    [Header("Other Requirements")]
     [SerializeField] float timeToSwitch;
+    [SerializeField] AudioClip perkSwitch;
 
     private Player theScript;
     private float initialSpeed;
@@ -91,6 +92,8 @@ public class Perks : MonoBehaviour
             ResetStats(needRemove);
             inactivePerks.Add(needRemove);
         }
+
+        GameManager.instance.playerScript.playerSFXSRC.PlayOneShot(perkSwitch);
     }   
 
     private void SwithSlotUI(int slotId, GameObject obj) {

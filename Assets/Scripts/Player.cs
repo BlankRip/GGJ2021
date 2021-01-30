@@ -27,14 +27,18 @@ public class Player : MonoBehaviour
     [SerializeField] float dashGap = 1f;
     public float dashForce = 5f;
 
-    [Header("Other Requirments")]
+    [Header("Other Requirements")]
     [Range(0, 0.5f)] [SerializeField] float groundCheckRadius = 0.2f;
     [SerializeField] LayerMask groundLayers;
     [SerializeField] Transform feetPoint;
     public Transform playerModel;
     public UnityEvent OnLanding;
 
-    
+    [Header("Audio")]
+    public AudioSource playerSFXSRC;
+    [SerializeField] AudioClip jumpSound;
+    [SerializeField] AudioClip dashSound;
+
     private float currentHealth;
     private float horizontalInput;
     private float currentSpeed, airSpeed;
@@ -78,6 +82,8 @@ public class Player : MonoBehaviour
             //If player is not sliding and is on the ground then trigger a jump
             if (grounded && (Input.GetKeyDown(KeyCode.Space))) {
                 jump = true;
+                
+                playerSFXSRC.PlayOneShot(jumpSound);
 
                 if (jumpenni) {
                     StopCoroutine(ActivateDoubleJump());
@@ -88,6 +94,7 @@ public class Player : MonoBehaviour
             if (jumpenni) {
                 if (!grounded && doublJump && (Input.GetKeyDown(KeyCode.Space))) {
                     secondJump = true;
+                    playerSFXSRC.PlayOneShot(jumpSound);
                     doublJump = false;
                 }
             }
@@ -107,7 +114,10 @@ public class Player : MonoBehaviour
         #region Dash
         if(dasher) {
             if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
-            dash = true;
+            {
+                playerSFXSRC.PlayOneShot(dashSound);
+                dash = true;
+            }
         }
         #endregion
     }
